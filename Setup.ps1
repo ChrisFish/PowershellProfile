@@ -1,4 +1,4 @@
-$url = "https://github.com/ChrisFish/PowershellProfile/raw/main/Microsoft.PowerShell_profile.ps1"
+$url = "https://raw.githubusercontent.com/ChrisFish/PowershellProfile/main/Microsoft.PowerShell_profile.ps1"
 #If the file does not exist, create it.
 if (!(Test-Path -Path $PROFILE -PathType Leaf)) {
     try {
