@@ -1,14 +1,28 @@
-$url = "https://raw.githubusercontent.com/ChrisFish/PowershellProfile/main/Microsoft.PowerShell_profile.ps1"
+if ($IsWindows) {
+    Write-Host "Running on Windows"
+} elseif ($IsMacOS) {
+    Write-Host "Running on macOS"
+} else {
+    Write-Host "Running on another platform"
+}
+
+
+$url = "https://raw.githubusercontent.com/ChrisFish/PowershellProfile/main/Microsoft.Powershell_profile.ps1"
 #If the file does not exist, create it.
 if (!(Test-Path -Path $PROFILE -PathType Leaf)) {
     try {
-        if ($PSVersionTable.PSEdition -eq "Desktop") {
+        if ($PSVersionTable.PSEdition -eq "Core" ) { 
+            if (!(Test-Path -Path ($env:userprofile + "\Documents\Powershell"))) {
+                New-Item -Path ($env:userprofile + "\Documents\Powershell") -ItemType "directory"
+            }
+        }
+        elseif ($PSVersionTable.PSEdition -eq "Desktop") {
             if (!(Test-Path -Path ($env:userprofile + "\Documents\WindowsPowerShell"))) {
                 New-Item -Path ($env:userprofile + "\Documents\WindowsPowerShell") -ItemType "directory"
             }
         }
 
-        Invoke-RestMethod $url -OutFile $PROFILE
+        Invoke-WebRequest $url -OutFile $PROFILE
         Write-Host "The profile @ [$PROFILE] has been created."
         write-host "if you want to add any persistent components, please do so at
         [$HOME\Documents\PowerShell\Profile.ps1] as there is an updater in the installed profile 

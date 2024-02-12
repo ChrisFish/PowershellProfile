@@ -17,7 +17,7 @@
 try{
     $url = "https://raw.githubusercontent.com/ChrisFish/PowershellProfile/main/Microsoft.PowerShell_profile.ps1"
     $oldhash = Get-FileHash $PROFILE
-    Invoke-RestMethod $url -OutFile "$env:temp/Microsoft.PowerShell_profile.ps1"
+    Invoke-WebRequest $url -OutFile "$env:temp/Microsoft.PowerShell_profile.ps1"
     $newhash = Get-FileHash "$env:temp/Microsoft.PowerShell_profile.ps1"
     if ($newhash -ne $oldhash) {
         Get-Content "$env:temp/Microsoft.PowerShell_profile.ps1" | Set-Content $PROFILE
