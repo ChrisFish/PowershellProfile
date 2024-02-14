@@ -14,6 +14,7 @@
 ### more information about execution policies, run Get-Help about_Execution_Policies.
 
 #check for updates
+<#
 try{
     $url = "https://raw.githubusercontent.com/ChrisFish/PowershellProfile/main/Microsoft.PowerShell_profile.ps1"
     $oldhash = Get-FileHash $PROFILE
@@ -30,7 +31,7 @@ catch {
 }
 Remove-Variable @("newhash", "oldhash", "url")
 Remove-Item  "$env:temp/Microsoft.PowerShell_profile.ps1"
-
+#>
 # Import Terminal Icons
 Import-Module -Name Terminal-Icons
 
