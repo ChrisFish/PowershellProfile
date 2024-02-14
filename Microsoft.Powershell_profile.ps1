@@ -35,6 +35,8 @@ Remove-Item  "$env:temp/Microsoft.PowerShell_profile.ps1"
 # Import Terminal Icons
 Import-Module -Name Terminal-Icons
 
+Import-Module PSReadLine
+
 # Find out if the current user identity is elevated (has admin rights)
 $identity = [Security.Principal.WindowsIdentity]::GetCurrent()
 $principal = New-Object Security.Principal.WindowsPrincipal $identity
